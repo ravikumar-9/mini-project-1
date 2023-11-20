@@ -1,0 +1,28 @@
+@media screen and (max-width: 575px) {
+  .counter-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 20%;
+  }
+}
+.counter-button {
+  border: 1px solid black;
+  font-weight: bold;
+  border-radius: 3px;
+  font-size: 15px;
+  cursor: pointer;
+  display: inline;
+}
+.active-page-number {
+  font-weight: bolder;
+  font-size: 14px;
+}
+@media screen and (min-width: 576px) {
+  .counter-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 8%;
+  }
+}

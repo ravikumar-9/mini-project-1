@@ -17,6 +17,8 @@ import Footer from '../Footer'
 
 import CarouselImages from '../CarouselImages'
 
+import Counter from '../Counter'
+
 import './home.css'
 
 const loaderApiConstants = {
@@ -32,7 +34,11 @@ const settings = {
 }
 
 class Home extends Component {
-  state = {loaderApiStatus: loaderApiConstants.initial, offersList: []}
+  state = {
+    loaderApiStatus: loaderApiConstants.initial,
+    offersList: [],
+    activePageNumber: 1,
+  }
 
   componentDidMount() {
     this.getOffersList()
@@ -64,6 +70,24 @@ class Home extends Component {
         offersList: updatedOffersList,
         loaderApiStatus: loaderApiConstants.success,
       })
+    }
+  }
+
+  onIncreasePageNumber = () => {
+    const {activePageNumber} = this.state
+    if (activePageNumber < 4) {
+      this.setState(prevState => ({
+        activePageNumber: prevState.activePageNumber + 1,
+      }))
+    }
+  }
+
+  onDecreasePageNumber = () => {
+    const {activePageNumber} = this.state
+    if (activePageNumber > 1) {
+      this.setState(prev => ({
+        activePageNumber: prev.activePageNumber - 1,
+      }))
     }
   }
 
@@ -106,11 +130,18 @@ class Home extends Component {
   }
 
   render() {
+    const {activePageNumber} = this.state
     return (
       <div>
         <Header />
         <div className="carousel-container">{this.renderOffersList()}</div>
-        <div className="restaurant-list-container">h</div>
+        <div className="restaurant-list-container">
+          <Counter
+            activePageNumber={activePageNumber}
+            onIncreasePageNumber={this.onIncreasePageNumber}
+            onDecreasePageNumber={this.onDecreasePageNumber}
+          />
+        </div>
         <Footer />
       </div>
     )

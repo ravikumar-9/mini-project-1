@@ -1,21 +1,27 @@
-import {Component} from 'react'
-
 import './index.css'
 
-class Counter extends Component {
-  render() {
-    return (
-      <div>
-        <button type="button" onClick={this.onDecrement}>
-          -
-        </button>
-        <div>0</div>
-        <button type="button" onClick={this.onIncrement}>
-          +
-        </button>
-      </div>
-    )
+const Counter = props => {
+  const {activePageNumber, onIncreasePageNumber, onDecreasePageNumber} = props
+
+  const onIncrement = () => {
+    onIncreasePageNumber()
   }
+
+  const onDecrement = () => {
+    onDecreasePageNumber()
+  }
+
+  return (
+    <div className="counter-container">
+      <button type="button" onClick={onDecrement} className="counter-button">
+        -
+      </button>
+      <div className="active-page-number">{activePageNumber}</div>
+      <button type="button" onClick={onIncrement} className="counter-button">
+        +
+      </button>
+    </div>
+  )
 }
 
 export default Counter
